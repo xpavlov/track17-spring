@@ -1,6 +1,6 @@
 package track.lessons.lesson1;
 
-import java.io.File;
+import java.io.*;
 
 /**
  * Задание 1: Реализовать два метода
@@ -31,7 +31,23 @@ public class CountWords {
      * @return - целое число - сумма всех чисел из файла
      */
     public long countNumbers(File file) throws Exception {
-        return 0;
+        Long accumulator = 0L;
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String inputString;
+            Integer buffer;
+            while ((inputString = bufferedReader.readLine()) != null) {
+                try {
+                    buffer = Integer.parseInt(inputString);
+                    accumulator += buffer;
+                } catch ( NumberFormatException n) { }
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return accumulator;
     }
 
 
@@ -43,7 +59,26 @@ public class CountWords {
      * @return - результирующая строка
      */
     public String concatWords(File file) throws Exception {
-        return null;
+        StringBuilder accumulator = new StringBuilder("");
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String inputString;
+            while ((inputString = bufferedReader.readLine()) != null) {
+                try {
+                    Integer.parseInt(inputString);
+                } catch ( NumberFormatException n) {
+                    if (!inputString.isEmpty()) {
+                        accumulator.append(inputString);
+                        accumulator.append(' ');
+                    }
+                }
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return accumulator.toString();
     }
 
 }

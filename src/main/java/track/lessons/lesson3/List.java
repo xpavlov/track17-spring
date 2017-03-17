@@ -11,6 +11,8 @@ import java.util.NoSuchElementException;
  */
 public abstract class List {
 
+    protected int size = 0;
+
     /**
      * Добавить элемент в конец списка
      */
@@ -35,7 +37,15 @@ public abstract class List {
     /**
      * Кол-во элементов списка
      */
-    abstract int size();
+    public int size() {
+        return size;
+    }
+
+    protected void checkIndexRange( int idx) throws NoSuchElementException {
+        if (this.size == 0 || idx < 0 || idx > this.size - 1) {
+            throw new NoSuchElementException();
+        }
+    }
 
 
 }
