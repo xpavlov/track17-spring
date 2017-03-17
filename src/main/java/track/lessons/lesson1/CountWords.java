@@ -78,6 +78,7 @@ public class CountWords {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        accumulator.setLength(accumulator.length() - 1); //trim() is a good alternative
         return accumulator.toString();
     }
 

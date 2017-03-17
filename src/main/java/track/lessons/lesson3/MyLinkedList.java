@@ -49,7 +49,7 @@ public class MyLinkedList extends List implements Stack, Queue  {
         checkIndexRange(idx);
         Node current = first;
         int ptr = 0;
-        while (ptr != idx) {
+        while (ptr < idx) {
             current = current.next;
             ptr++;
         }
@@ -60,12 +60,20 @@ public class MyLinkedList extends List implements Stack, Queue  {
             current.next.prev = current.prev;
         }
         if (ptr == 0) {
-            first = current.next;
-            first.prev = null;
+            if (current != null) {
+                first = current.next;
+            }
+            if (first != null) {
+                first.prev = null;
+            }
         }
         if (ptr == this.size - 1) {
-            last = current.prev;
-            last.next = null;
+            if (current != null) {
+                last = current.prev;
+            }
+            if (last != null) {
+                last.next = null;
+            }
         }
         this.size--;
         return current.val;
@@ -79,7 +87,7 @@ public class MyLinkedList extends List implements Stack, Queue  {
         } else {
             Node current = first;
             int ptr = 0;
-            while (ptr != idx) {
+            while (ptr < idx) {
                 current = current.next;
                 ptr++;
             }

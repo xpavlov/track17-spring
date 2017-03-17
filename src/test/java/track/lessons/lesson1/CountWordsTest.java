@@ -18,7 +18,6 @@ public class CountWordsTest {
         file = new File("words.txt");
     }
 
-
     @Test
     public void countNumbers() throws Exception {
         CountWords countWords = new CountWords();
